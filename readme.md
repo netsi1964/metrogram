@@ -1,11 +1,11 @@
 # A forked version of Metrogram is a slideshow of Instagram photos filtered by tags
 
-I have forked the [https://github.com/kasparsd/metrogram](metrogram) by [http://konstruktors.com](Kaspars Dambis)
+I have forked the [metrogram](https://github.com/kasparsd/metrogram) by [Kaspars Dambis](http://konstruktors.com)
 Adding this:
-# Cofigurable speed through @speed@ parameter [Default: 6000]
-# Link to QR code where you can open the original image in new tab
+##Cofigurable speed through @speed@ parameter [Default: 6000]
+##Link to QR code where you can open the original image in new tab
 
-**Demo of my formed version**: [http://dl.dropbox.com/u/3260327/metrogram/index.html](DEMO)
+**Demo of my formed version**: [DEMO](http://dl.dropbox.com/u/3260327/metrogram/index.html)
 
 **Original Demo**: [http://metrogram.konstruktors.com](http://metrogram.konstruktors.com)
 
