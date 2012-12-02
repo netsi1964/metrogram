@@ -7,7 +7,7 @@ var metrogram = angular.module(
 		'metrogram', []
 	).config(
 		['$routeProvider', '$locationProvider', function( $routeProvider, $locationProvider ) {
-			$routeProvider.when('/tag/:tag');
+			$routeProvider.when('/tag/:tag/speed/:speed');
 		}]
   	).controller(
 		'slideshow', function ( $scope, $http, $timeout, $route, $location ) {
@@ -19,12 +19,16 @@ var metrogram = angular.module(
 				
 				$scope.loadingClass = 'loading';
 				$scope.imgCurrent = 0;
-
-				if ( ! $route.current )
-					$location.path( '/tag/' + $scope.tag );
-				else if ( angular.isDefined( $route.current.params.tag ) )
-					$scope.tag = $route.current.params.tag;
-
+				if ( ! $route.current ) {
+					$location.path( '/tag/' + $scope.tag + '/speed/'+ $scope.speed);
+				} else {
+					if (angular.isDefined( $route.current.params.tag )) {
+						$scope.tag = $route.current.params.tag;
+					}
+					if (angular.isDefined( $route.current.params.speed )) {
+						$scope.speed = $route.current.params.speed;
+					}
+				}
 				$http.jsonp( 
 					api.replace( '%tag%', $scope.tag )
 				).success( function( data ) {
@@ -42,7 +46,7 @@ var metrogram = angular.module(
 
 					// Check for new images on every loop
 					if ( data.data.length )
-						refreshApi = $timeout( $scope.fetchImages, 6000 * data.data.length );
+						refreshApi = $timeout( $scope.fetchImages, $scope.speed * data.data.length );
 				}).error( function() {
 					delete $scope.loadingClass;
 					refreshApi = $timeout( $scope.fetchImages, 2000 );
@@ -65,7 +69,7 @@ var metrogram = angular.module(
 					$scope.images.push( $scope.images.shift() );
 				*/
 
-				$timeout( $scope.advanceSlide, 6000 );
+				$timeout( $scope.advanceSlide, $scope.speed );
 			}
 
 			// Advance slides
@@ -81,7 +85,7 @@ var metrogram = angular.module(
 			}
 
 			$scope.tagChange = function() {
-				$location.path( '/tag/' + $scope.tag );
+				$location.path( '/tag/' + $scope.tag + '/speed/'+ $scope.speed) ;
 
 				if ( newReq )
 					$timeout.cancel( newReq );
