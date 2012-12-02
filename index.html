@@ -15,9 +15,9 @@
 	<h1>
 		<img src="assets/instagram-logo.png" /> 
 		#<input type="text" ng-model="tag" ng-change="tagChange()" ng-init="tag = 'aarhus'" size="{{ tag.length }}" />
-		<input type="text" ng-model="speed" ng-init="speed='6000'">
+		<input type="hidden" ng-model="speed" ng-init="speed='6000'">
 	</h1>
-	speed: {{speed}}
+
 
 	<ul id="slides">
 		<li ng-repeat="image in images" class="slide" ng-class="{ active : image.isActive }">
