@@ -35,6 +35,7 @@ var metrogram = angular.module(
 					delete $scope.loadingClass;
 
 					$scope.images = data.data;
+					console.log(data.data);
 
 					// Set the first image active
 					if ( data.data.length )

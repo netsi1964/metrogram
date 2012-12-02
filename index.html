@@ -14,7 +14,7 @@
 <body ng-controller="slideshow" ng-class="loadingClass">
 	<h1>
 		<img src="assets/instagram-logo.png" /> 
-		#<input type="text" ng-model="tag" ng-change="tagChange()" ng-init="tag = 'aarhus'" size="{{ tag.length }}" />
+		#<input type="text" ng-model="tag" id="tag" ng-change="tagChange()" ng-init="tag = 'aarhus'" size="{{ tag.length }}" />
 		<input type="hidden" ng-model="speed" ng-init="speed='6000'">
 	</h1>
 
@@ -23,6 +23,7 @@
 		<li ng-repeat="image in images" class="slide" ng-class="{ active : image.isActive }">
 			<figure>
 				<img ng-src="{{ image.images.standard_resolution.url }}" class="image" />
+				<em>Filter used: {{image.filter}}</em>
 			</figure>
 
 			<div class="meta">
@@ -32,10 +33,13 @@
 				<p class="caption">
 					<cite class="author">
 						<img ng-src="{{ image.user.profile_picture }}" width="40" height="40" /> 
-						{{ image.user.username }}
+						<a href="http://www.instagram.com/{{image.user.username}}" target="_blank">{{image.user.username}}</a>
 					</cite> 
 					{{ image.caption.text }}
 				</p>
+				<ul class="tags" ng-repeat="tag	in image.tags">
+					<li style="display: inline-block; margin-right: .1em;" onclick="document.getElementById('tag').value = '{{tag}}'">#{{tag}}</li>
+				</ul>
 				<p class="likes">
 					&hearts; {{ image.likes.count }} likes
 				</p>
